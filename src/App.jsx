@@ -17,12 +17,30 @@ class App extends React.Component {
         };
 
         this.handleStatusChange = this.handleStatusChange.bind(this);
+        this.handleDelete = this.handleDelete.bind(this);
 
 
     }
 
     handleStatusChange(id){
-        console.log('onStatusChange', id);
+        let todos = this.state.todos.map(todo => {
+            if(todo.id === id){
+                todo.completed = !todo.completed;
+            }
+            return todo;
+        });
+
+        this.setState({
+            todos
+        });
+    }
+
+    handleDelete(id){
+        let todos = this.state.todos.filter(todo => todo.id != id)
+
+        this.setState({
+            todos
+        });
     }
 
     render(){
@@ -38,6 +56,7 @@ class App extends React.Component {
                               title={todo.title}
                               completed={todo.completed}
                               onStatusChange={this.handleStatusChange}
+                              onDelete = {this.handleDelete}
                         />)
 
                     }
