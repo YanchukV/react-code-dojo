@@ -1,21 +1,26 @@
 import React from 'react';
 
 function Stats (props){
+
+    let total = props.todos.length;
+    let completed = props.todos.filter( todo => todo.completed ).length;
+    let notCompleted = total - completed;
+
     return(
 
         <table className="stats">
             <tbody>
             <tr>
                 <th>Всего задач</th>
-                <td>3</td>
+                <td>{total}</td>
             </tr>
             <tr>
                 <th>Выполнено:</th>
-                <td>1</td>
+                <td>{completed}</td>
             </tr>
             <tr>
                 <th>Осталось:</th>
-                <td>2</td>
+                <td>{notCompleted}</td>
             </tr>
             </tbody>
         </table>
@@ -23,4 +28,8 @@ function Stats (props){
     );
 }
 
+Stats .propTypes = {
+    todos: React.PropTypes.array.isRequired
+
+};
 export default Stats;

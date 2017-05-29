@@ -5,14 +5,16 @@ import Stats from './stats';
 function Header(props){
     return (
         <header>
-            <Stats />
+            <Stats todos={props.todos} />
             <h1>{props.title}</h1>
         </header>
     );
 }
 
 Header.propTypes = {
-    title: React.PropTypes.string.isRequired
+    title: React.PropTypes.string.isRequired,
+    todos: React.PropTypes.array.isRequired,
+
 };
 
 export default Header;
